@@ -1,0 +1,37 @@
+{
+  "name": "test-ze-delivery",
+  "version": "1.0.0",
+  "description": "Test interview for ze delivery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "interview",
+    "ze-delivery",
+    "geojson"
+  ],
+  "author": "Elisson Silva <nossilesilva@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "celebrate": "^12.1.1",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "mongoose": "^5.9.21",
+    "nconf": "^0.10.0",
+    "pino": "^6.3.2",
+    "pino-pretty": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coverage": "^0.4.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "mocha": "^8.0.1",
+    "nodemon": "^2.0.4",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0",
+    "standard-version": "^8.0.0"
+  }
+}

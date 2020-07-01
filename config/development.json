@@ -1,0 +1,16 @@
+{
+  "environment": "development",
+  "mongo": {
+    "host": "",
+    "username": "",
+    "password": "",
+    "port": "",
+    "database": "delivery_development",
+    "options": {
+      "useNewUrlParser": true,
+      "reconnectTries": 10,
+      "reconnectInterval": 500,
+      "connectTimeoutMS": 1000
+    }
+  }
+}

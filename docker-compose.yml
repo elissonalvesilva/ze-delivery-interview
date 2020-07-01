@@ -1,0 +1,21 @@
+version: "2"
+services:
+  app:
+    container_name: delivery-api
+    build:
+      context: .
+      dockerfile: docker/development/Dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - "4001:4001"
+    volumes:
+      - .:/usr/src/app
+    command: nodemon server.js
+  mongo:
+    image: mongo
+    container_name: delivery-database
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: d3l1v3ry
