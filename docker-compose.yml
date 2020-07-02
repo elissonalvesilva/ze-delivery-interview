@@ -1,4 +1,4 @@
-version: "2"
+version: "2.1"
 services:
   app:
     container_name: delivery-api
@@ -6,16 +6,36 @@ services:
       context: .
       dockerfile: docker/development/Dockerfile
     depends_on:
-      - mongo
+      delivery-database:
+        condition: service_healthy
     ports:
       - "4001:4001"
     volumes:
       - .:/usr/src/app
+    links:
+    - delivery-database:delivery-database
+    networks:
+      - app-network
     command: nodemon server.js
-  mongo:
+  delivery-database:
     image: mongo
     container_name: delivery-database
     restart: always
+    command: ["--bind_ip_all"]
+    volumes:
+      - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: d3l1v3ry
+      MONGO_INITDB_DATABASE: delivery
+    networks:
+      - app-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo delivery-database:27017/delivery --quiet
+      timeout: 20s
+      retries: 10
+    ports:
+      - '27017-27019:27017-27019'
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  db_data:

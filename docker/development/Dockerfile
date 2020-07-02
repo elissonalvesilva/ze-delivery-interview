@@ -1,4 +1,4 @@
-FROM node:8.11.4-alpine
+FROM node:12.18.2-alpine
 
 ENV CODE /usr/src/app
 

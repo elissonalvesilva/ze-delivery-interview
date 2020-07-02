@@ -14,8 +14,8 @@ const applyMiddlewares = (app) => {
   app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
   app.use(bodyParser.json({ limit: '5mb' }));
   app.use(bodyParser.json());
-  app.use(normalizeQueryParams());
-  app.use(normalizeBodyParams());
+  // app.use(normalizeQueryParams());
+  // app.use(normalizeBodyParams());
 };
 
 module.exports = { applyMiddlewares };

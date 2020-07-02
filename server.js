@@ -1,4 +1,3 @@
-require('dotenv').load();
 const conf = require('./utils/config');
 
 const port = conf.get('port');
@@ -25,6 +24,6 @@ initialize().then(() => {
       process.send({ status: 'listening' });
     }
 
-    logger.info(`AmBev API (${environment}) listening at ${port}`);
+    logger.info(`Delivery API (${environment}) listening at ${port}`);
   });
 });

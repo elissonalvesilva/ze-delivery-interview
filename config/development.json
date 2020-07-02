@@ -1,15 +1,14 @@
 {
   "environment": "development",
   "mongo": {
-    "host": "",
-    "username": "",
-    "password": "",
-    "port": "",
-    "database": "delivery_development",
+    "host": "delivery-database",
+    "username": "delivery",
+    "password": "d3l1v3ry",
+    "port": "27017",
+    "database": "delivery",
     "options": {
+      "useUnifiedTopology": true,
       "useNewUrlParser": true,
-      "reconnectTries": 10,
-      "reconnectInterval": 500,
       "connectTimeoutMS": 1000
     }
   }
