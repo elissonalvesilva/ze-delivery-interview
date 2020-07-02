@@ -18,7 +18,7 @@ const router = new Router({ mergeParams: true });
 // };
 
 router.get(
-  '/:id',
+  '/',
   // authMiddleware,
   // validateMiddleware,
   partner.handle,

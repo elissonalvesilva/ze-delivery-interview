@@ -4,7 +4,8 @@ const logger = require('../../utils/logger');
 const DeliveryController = {
   async handle(req, res, next) {
     try {
-      const data = await BusinesessPartner.handle(req);
+      req.query.host = req.headers.host;
+      const data = await BusinesessPartner.handle(req.query);
       return res.status(data.httpCode).json(data.response);
     } catch (e) {
       logger.error('Delivery Controller:', e.message);
