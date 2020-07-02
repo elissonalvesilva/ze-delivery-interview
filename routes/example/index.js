@@ -3,7 +3,7 @@ const { celebrate } = require('celebrate');
 
 const joiSchema = require('./validation');
 const example = require('../../controllers/example');
-const { authMiddleware } = require('../../middlewares/auth');
+// const { authMiddleware } = require('../../middlewares/auth');
 
 const router = new Router({ mergeParams: true });
 
@@ -19,7 +19,7 @@ const validateMiddleware = (req, res, next) => {
 
 router.get(
   '/',
-  authMiddleware,
+  // authMiddleware,
   validateMiddleware,
   example.handle,
 );
