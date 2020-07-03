@@ -109,13 +109,13 @@ npm run start
  - health
 > http://localhost:4001/health
  - Search by id
-> http://localhost:4001/partner?pid=<ID>
+> http://localhost:4001/partner?pid=[ID]
  - Search by lat and long
-> http://localhost:4001/partner?lat=<lat>&long=<long>
+> http://localhost:4001/partner?lat=[LAT]&long=[LONG]
  - Search by id, lat and long
-> http://localhost:4001/partner?pid=<<LAT>>&lat=<lat>&long=<long>
+> http://localhost:4001/partner?pid=[ID]&lat=[LAT]&long=[LONG]
  - Get all nearest partners
-> http://localhost:4001/partner?lat=<<LAT>>&long=<long>&allNearest=true
+> http://localhost:4001/partner?lat=[LAT]&long=[LONG]>&allNearest=true
 
 ## flow diagram
 
