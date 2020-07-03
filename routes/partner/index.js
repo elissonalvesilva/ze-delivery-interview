@@ -28,4 +28,10 @@ router.get(
   partner.handle,
 );
 
+router.post(
+  '/',
+  // validateMiddleware,
+  partner.create,
+);
+
 module.exports = router;

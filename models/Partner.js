@@ -24,6 +24,9 @@ const PartnerSchema = new Schema({
     type: {
       type: String,
       required: true,
+      enum: [
+        'MultiPolygon',
+      ],
     },
     coordinates: {
       type: Array,
@@ -34,6 +37,9 @@ const PartnerSchema = new Schema({
     type: {
       type: String,
       required: true,
+      enum: [
+        'Point',
+      ],
     },
     coordinates: {
       type: Array,
@@ -41,6 +47,8 @@ const PartnerSchema = new Schema({
     },
   },
 });
+
+PartnerSchema.index({ coverageArea: ' 2dsphere' });
 
 // set a Partner schema in mongoose model
 const Partner = mongoose.model('partners', PartnerSchema);

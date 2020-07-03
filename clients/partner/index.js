@@ -1,4 +1,6 @@
+const _ = require('lodash');
 const { Partner } = require('../../models');
+const RequestError = require('../../utils/error/request-error');
 // Partner Client
 const PartnerClient = {
   /**
@@ -22,6 +24,23 @@ const PartnerClient = {
 
     partner = Partner.findOne(where);
     return partner;
+  },
+  async create(params) {
+    let partner = '';
+    const {
+      document,
+    } = params;
+
+    partner = await Partner.findOne({ document });
+    if (_.isEmpty(partner)) {
+      partner = new Partner(params);
+      partner = await partner.save(partner);
+      return partner;
+    }
+
+    throw new RequestError({
+      message: 'Partner exists in database',
+    });
   },
 };
 

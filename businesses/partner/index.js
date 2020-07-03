@@ -54,6 +54,31 @@ const BusinesessPartner = {
       response,
     };
   },
+  async create(body) {
+    let httpCode = 200;
+    let response = '';
+
+    // format request
+    response = await ServicePartner.createPartner(body);
+
+    if (response && 'error' in response) {
+      httpCode = 400;
+      response = {
+        message: 'Error to create partner',
+        error: response.message,
+      };
+
+      return {
+        httpCode,
+        response,
+      };
+    }
+
+    return {
+      httpCode,
+      response,
+    };
+  },
 };
 
 module.exports = BusinesessPartner;

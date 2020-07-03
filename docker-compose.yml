@@ -15,7 +15,7 @@ services:
     links:
     - delivery-database:delivery-database
     networks:
-      - app-network
+      - ze-network
     command: nodemon server.js
   delivery-database:
     image: mongo
@@ -27,7 +27,7 @@ services:
     environment:
       MONGO_INITDB_DATABASE: delivery
     networks:
-      - app-network
+      - ze-network
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongo delivery-database:27017/delivery --quiet
       timeout: 20s
@@ -35,7 +35,7 @@ services:
     ports:
       - '27017-27019:27017-27019'
 networks:
-  app-network:
+  ze-network:
     driver: bridge
 volumes:
   db_data:
