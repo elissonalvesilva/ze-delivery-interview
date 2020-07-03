@@ -9,6 +9,11 @@ module.exports = {
       is: Joi.number().required(),
       then: Joi.required(),
     }),
+    allnearest: Joi.boolean()
+      .truthy('true')
+      .truthy('1')
+      .falsy('false')
+      .falsy('0'),
   }).or('pid', 'lat')
     .error((errors) => {
       if (errors[0]) {

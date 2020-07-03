@@ -20,6 +20,10 @@ const PartnerRequestFormatter = {
       };
     }
 
+    if ('allnearest' in query) {
+      formattedRequest.allnearest = query.allnearest;
+    }
+
     return formattedRequest;
   },
 };

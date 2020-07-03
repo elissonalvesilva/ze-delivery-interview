@@ -3,7 +3,16 @@ const logger = require('../../utils/logger');
 const { Partner } = require('../../clients/Database');
 
 const find = async (where) => {
-  const partner = await Partner.find(where);
+  let partner = '';
+  const { allnearest } = where;
+  delete where.allnearest;
+
+  if (allnearest) {
+    partner = await Partner.find(where);
+    return partner;
+  }
+
+  partner = Partner.findOne(where);
   return partner;
 };
 
