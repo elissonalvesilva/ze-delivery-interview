@@ -1,7 +1,8 @@
+// init mongo database
 /* eslint-disable no-undef */
 const database = 'delivery';
 db = db.getSiblingDB(database);
-
+// create use mongo and set a property read adn write
 db.createUser({
   user: 'delivery',
   pwd: 'd3l1v3ry',
@@ -9,9 +10,10 @@ db.createUser({
     { role: 'readWrite', db: `${database}` },
   ],
 });
-
+// create collection partners
 db.createCollection('partners');
 try {
+  // insert all data
   db.partners.insertMany([
     {
       id: 1,

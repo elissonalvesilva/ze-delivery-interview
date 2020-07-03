@@ -43,6 +43,6 @@ const PartnerSchema = new Schema({
 });
 
 // set a Partner schema in mongoose model
-const Partner = mongoose.model('partner', PartnerSchema);
+const Partner = mongoose.model('partners', PartnerSchema);
 
 module.exports = Partner;
