@@ -31,6 +31,9 @@ mocha:
 
 test: lint mocha
 
+populate:
+	node scripts/populate.js
+
 run:
 	docker-compose exec app sh
 

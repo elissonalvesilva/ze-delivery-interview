@@ -54,6 +54,11 @@ const BusinesessPartner = {
       response,
     };
   },
+  /**
+   * Create partner
+   * @param {Object} body - Request body
+   * @returns {Object} - { httpCode, response }
+   */
   async create(body) {
     let httpCode = 200;
     let response = '';

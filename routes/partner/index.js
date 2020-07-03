@@ -30,7 +30,6 @@ router.get(
 
 router.post(
   '/',
-  // validateMiddleware,
   partner.create,
 );
 
