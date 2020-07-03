@@ -113,8 +113,10 @@ npm run start
  - Search by lat and long
 > http://localhost:4001/partner?lat=<lat>&long=<long>
  - Search by id, lat and long
-> http://localhost:4001/partner?pid=<id>&lat=<lat>&long=<long>
+> http://localhost:4001/partner?pid=<<LAT>>&lat=<lat>&long=<long>
  - Get all nearest partners
-> http://localhost:4001/partner?lat=<lat>&long=<long>&allNearest=true
+> http://localhost:4001/partner?lat=<<LAT>>&long=<long>&allNearest=true
 
 ## flow diagram
+
+
