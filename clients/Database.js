@@ -1,5 +1,7 @@
 const Partner = require('../models/Partner');
 
-module.exports = {
+const Models = {
   Partner,
 };
+
+module.exports = Models;
