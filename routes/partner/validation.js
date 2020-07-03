@@ -6,10 +6,10 @@ module.exports = {
     pid: Joi.number(),
     lat: Joi.number().precision(10),
     long: Joi.number().precision(10).when('lat', {
-      is: Joi.number().precision(10).required(),
+      is: Joi.number().required(),
       then: Joi.required(),
     }),
-  }).xor('pid', 'lat')
+  }).or('pid', 'lat')
     .error((errors) => {
       if (errors[0]) {
         if (errors[0].code === 'object.missing') {
@@ -23,7 +23,7 @@ module.exports = {
           if (errors[0].path) {
             fields = errors[0].path;
           }
-
+          console.log(errors[0]);
           // throw bad request with default message
           throwBadRequest({
             fields,
