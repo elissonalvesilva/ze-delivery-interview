@@ -65,7 +65,7 @@ const PartnerRequestFormatter = {
       };
     }
 
-    if ('allnearest' in query) {
+    if ('allnearest' in query && !('pid' in query)) {
       formattedRequest.allnearest = query.allnearest;
     }
 
