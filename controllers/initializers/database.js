@@ -12,6 +12,7 @@ const options = conf.get('mongo:options');
 
 const url = `mongodb://${username}:${password}@${host}:${port}/${database}`;
 
+// connect to database
 const connectToMongo = async () => {
   try {
     await mongoose.connect(url, options);

@@ -3,7 +3,6 @@ const { celebrate } = require('celebrate');
 
 const joiSchema = require('./validation');
 const partner = require('../../controllers/partner');
-// const { authMiddleware } = require('../../middlewares/auth');
 
 const router = new Router({ mergeParams: true });
 
@@ -11,6 +10,12 @@ const joiOptions = {
   allowUnknown: true,
 };
 
+/**
+ * Get Joi Schema and using celebrate to create a validation middleware
+ * @param {Object} req - Request object
+ * @param {Object} res - Response bject
+ * @param {Object} next - Next object
+ */
 const validateMiddleware = (req, res, next) => {
   const schema = joiSchema;
 
@@ -19,7 +24,6 @@ const validateMiddleware = (req, res, next) => {
 
 router.get(
   '/',
-  // authMiddleware,
   validateMiddleware,
   partner.handle,
 );

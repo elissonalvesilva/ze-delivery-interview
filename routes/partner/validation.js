@@ -1,6 +1,15 @@
 const { Joi } = require('celebrate');
 const { throwBadRequest } = require('../../utils/error/bad-request');
 
+/**
+ * In query string validate
+ * - if pass pid or lat
+ * - if pid is a number
+ * - if lat in inside query, long is required
+ * - if pass allnearest and it it's truthy
+ *
+ * If exists a erro set a throwBadRequest
+ */
 module.exports = {
   query: Joi.object({
     pid: Joi.number(),

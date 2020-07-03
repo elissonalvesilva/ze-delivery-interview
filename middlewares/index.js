@@ -5,7 +5,10 @@ const logger = require('../utils/logger');
 const normalizeQueryParams = require('./normalize-query-params');
 
 const expressPino = expressPinoLogger({ logger });
-
+/**
+ * Set middlewares
+ * @param {Object} express
+ */
 const applyMiddlewares = (app) => {
   app.use(helmet());
   app.use(expressPino);

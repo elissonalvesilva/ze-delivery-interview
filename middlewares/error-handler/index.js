@@ -2,6 +2,13 @@ const { isCelebrate } = require('celebrate');
 const errorFormatter = require('../../formatters/response/errors');
 const RequestError = require('../../utils/error/request-error');
 
+/**
+ * Return a formatted Error Response
+ * @param {Object} err - Err Object from Request
+ * @param {Object} req - Request Object
+ * @param {Object} res - Response Object
+ * @param {Object} next - Next function
+ */
 function errorHandler(err, req, res, next) { // eslint-disable-line
   if (isCelebrate(err)) {
     return errorFormatter.badRequestResponse(res, {

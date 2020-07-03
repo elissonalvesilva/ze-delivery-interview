@@ -1,3 +1,15 @@
 {
-  "environment": "production"
+  "environment": "production",
+  "mongo": {
+    "host": "",
+    "username": "",
+    "password": "",
+    "port": "",
+    "database": "delivery",
+    "options": {
+      "useUnifiedTopology": true,
+      "useNewUrlParser": true,
+      "connectTimeoutMS": 1000
+    }
+  }
 }

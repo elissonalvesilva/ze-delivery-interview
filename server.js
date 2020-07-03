@@ -13,6 +13,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 process.env.TZ = conf.get('timezone');
 
+// just run the application when all initializer init
 initialize().then(() => {
   app.listen(port, host, (err) => {
     if (err) {

@@ -1,7 +1,14 @@
 const logger = require('../../utils/logger');
 const PartnerClient = require('../../clients/partner');
 
+/**
+ * ServicePartner
+ */
 const ServicePartner = {
+  /**
+   * Get Partner from database
+   * @param {Object} params - formatted object to make a request to database
+   */
   async getPartner(params) {
     let partnerResponse = '';
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-
+// PartnerSchema
 const PartnerSchema = new Schema({
   id: {
     type: Number,
@@ -42,6 +42,7 @@ const PartnerSchema = new Schema({
   },
 });
 
+// set a Partner schema in mongoose model
 const Partner = mongoose.model('partner', PartnerSchema);
 
 module.exports = Partner;

@@ -6,11 +6,18 @@ const {
   PartnerResponseFormatter,
 } = require('../../formatters/partner/response');
 
+// Businesses Partner
 const BusinesessPartner = {
+  /**
+   * Get partner
+   * @param {Object} query - Request Query string
+   * @returns {Object} - { httpCode, response }
+   */
   async handle(query) {
     let httpCode = 200;
     let response = '';
 
+    // format request
     const formatterRequest = PartnerRequestFormatter.format(query);
     response = await ServicePartner.getPartner(formatterRequest);
 
@@ -39,6 +46,7 @@ const BusinesessPartner = {
       };
     }
 
+    // format response
     response = PartnerResponseFormatter.format(response);
 
     return {
