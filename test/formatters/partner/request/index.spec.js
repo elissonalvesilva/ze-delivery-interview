@@ -63,35 +63,4 @@ describe('Partner Request Formatter', () => {
     const response = PartnerRequestFormatter.format(query);
     expect(response).to.be.an('object').to.deep.equal(returnResponse);
   });
-
-  it(
-    'should return a formatted response with id, lat, long and allNearest',
-    () => {
-      const query = {
-        pid: 12,
-        lat: -12,
-        long: 30,
-        allnearest: true,
-      };
-
-      const returnResponse = {
-        id: 12,
-        coverageArea: {
-          $geoIntersects:
-            {
-              $geometry:
-              {
-                type: 'Point',
-                coordinates:
-                [query.lat, query.long],
-              },
-            },
-        },
-        allnearest: true,
-      };
-
-      const response = PartnerRequestFormatter.format(query);
-      expect(response).to.be.an('object').to.deep.equals(returnResponse);
-    },
-  );
 });
