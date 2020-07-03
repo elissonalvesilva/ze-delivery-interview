@@ -5,11 +5,11 @@ const logger = require('../../../utils/logger');
 
 describe('Partner Service', () => {
   let sandbox;
-  let partnerClientResponse;
+  let partner;
   beforeEach(() => {
     sandbox = sinon.createSandbox();
     sandbox.stub(logger, 'error');
-    partnerClientResponse = {
+    partner = {
       id: 1,
       tradingName: 'Adega da Cerveja - Pinheiros',
       ownerName: 'Zé da Silva',
@@ -37,15 +37,51 @@ describe('Partner Service', () => {
       'should return a valid response object on valid query object',
       async () => {
         sandbox.stub(PartnerClient, 'find').returns(
-          Promise.resolve(partnerClientResponse),
+          Promise.resolve(partner),
         );
         const query = {
           id: 1,
         };
 
         const response = await PartnerService.getPartner(query);
-        expect(response).to.equals(partnerClientResponse);
+        expect(response).to.equals(partner);
       },
     );
+
+    it('should return a error to get partner', async () => {
+      sandbox.stub(PartnerClient, 'find').returns(
+        Promise.reject(new Error('handle error on rejection')),
+      );
+
+      const response = await PartnerService
+        .getPartner(partner);
+      expect(response).to.deep.equal({
+        error: true,
+        message: 'handle error on rejection',
+      });
+    });
+
+    it('should return a created partner', async () => {
+      sandbox.stub(PartnerClient, 'create').returns(
+        Promise.resolve(partner),
+      );
+
+      const response = await PartnerService
+        .createPartner(partner);
+      expect(response).to.equals(partner);
+    });
+
+    it('should return a error to create partner', async () => {
+      sandbox.stub(PartnerClient, 'create').returns(
+        Promise.reject(new Error('handle error on rejection')),
+      );
+
+      const response = await PartnerService
+        .createPartner(partner);
+      expect(response).to.deep.equal({
+        error: true,
+        message: 'handle error on rejection',
+      });
+    });
   });
 });

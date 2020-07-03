@@ -1,5 +1,5 @@
 const { Joi } = require('celebrate');
-const { throwBadRequest } = require('../../utils/error/bad-request');
+const { throwBadRequest } = require('../../../utils/error/bad-request');
 
 /**
  * In query string validate
@@ -37,7 +37,6 @@ module.exports = {
           if (errors[0].path) {
             fields = errors[0].path;
           }
-          console.log(errors[0]);
           // throw bad request with default message
           throwBadRequest({
             fields,

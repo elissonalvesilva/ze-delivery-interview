@@ -33,8 +33,7 @@ const PartnerClient = {
 
     partner = await Partner.findOne({ document });
     if (_.isEmpty(partner)) {
-      partner = new Partner(params);
-      partner = await partner.save(partner);
+      partner = await Partner.create(params);
       return partner;
     }
 

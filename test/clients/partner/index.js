@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 const PartnerClient = require('../../../clients/partner');
 const { Partner } = require('../../../models');
 
@@ -12,43 +13,9 @@ describe('Partner Client', () => {
     sandbox.restore();
   });
 
-  it('should return a response with one pdv', async() => {
-    const resposeClient = {
-      id: 1,
-      tradingName: 'Adega da Cerveja - Pinheiros',
-      ownerName: 'Zé da Silva',
-      document: '1432132123891/0001', // CNPJ
-      coverageArea: {
-        type: 'MultiPolygon',
-        coordinates: [
-          [[[30, 20], [45, 40], [10, 40], [30, 20]]],
-          [[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]],
-        ],
-      },
-      address: {
-        type: 'Point',
-        coordinates: [-46.57421, -21.785741],
-      },
-    };
-
-    sandbox.stub(Partner, 'findOne').returns(
-      Promise.resolve(resposeClient),
-    );
-
-    const where = {
-      id: 1,
-      lat: 30,
-      long: 20,
-      allNearest: false,
-    };
-
-    const response = await PartnerClient.find(where);
-    expect(response).to.deep.equal(resposeClient);
-  });
-
-  it('should return a response with many pdvs using allNearest', async() => {
-    const resposenClient = [
-      {
+  describe('Get Partner', () => {
+    it('should return a response with one pdv', async() => {
+      const resposeClient = {
         id: 1,
         tradingName: 'Adega da Cerveja - Pinheiros',
         ownerName: 'Zé da Silva',
@@ -64,12 +31,84 @@ describe('Partner Client', () => {
           type: 'Point',
           coordinates: [-46.57421, -21.785741],
         },
-      },
-      {
-        id: 2,
-        tradingName: 'Adega da Cerveja - Botafogo',
-        ownerName: 'Zé Carlinhos',
-        document: '143213212333291/0001', // CNPJ
+      };
+
+      sandbox.stub(Partner, 'findOne').returns(
+        Promise.resolve(resposeClient),
+      );
+
+      const where = {
+        id: 1,
+        lat: 30,
+        long: 20,
+        allNearest: false,
+      };
+
+      const response = await PartnerClient.find(where);
+      expect(response).to.deep.equal(resposeClient);
+    });
+
+    it('should return a response with many pdvs using allNearest', async() => {
+      const resposenClient = [
+        {
+          id: 1,
+          tradingName: 'Adega da Cerveja - Pinheiros',
+          ownerName: 'Zé da Silva',
+          document: '1432132123891/0001', // CNPJ
+          coverageArea: {
+            type: 'MultiPolygon',
+            coordinates: [
+              [[[30, 20], [45, 40], [10, 40], [30, 20]]],
+              [[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]],
+            ],
+          },
+          address: {
+            type: 'Point',
+            coordinates: [-46.57421, -21.785741],
+          },
+        },
+        {
+          id: 2,
+          tradingName: 'Adega da Cerveja - Botafogo',
+          ownerName: 'Zé Carlinhos',
+          document: '143213212333291/0001', // CNPJ
+          coverageArea: {
+            type: 'MultiPolygon',
+            coordinates: [
+              [[[30, 20], [45, 40], [10, 40], [30, 20]]],
+              [[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]],
+            ],
+          },
+          address: {
+            type: 'Point',
+            coordinates: [-41.57421, -31.785741],
+          },
+        },
+      ];
+
+      sandbox.stub(Partner, 'find').returns(
+        Promise.resolve(resposenClient),
+      );
+
+      const where = {
+        id: 1,
+        lat: 30,
+        long: 20,
+        allnearest: true,
+      };
+
+      const response = await PartnerClient.find(where);
+      expect(response).to.deep.equal(resposenClient);
+    });
+  });
+
+  describe('Create Partner', () => {
+    it('should return a response with one created partner', async() => {
+      const createdPartner = {
+        id: 1,
+        tradingName: 'Adega da Cerveja - Pinheiros',
+        ownerName: 'Zé da Silva',
+        document: '1432132123891/0001', // CNPJ
         coverageArea: {
           type: 'MultiPolygon',
           coordinates: [
@@ -79,23 +118,49 @@ describe('Partner Client', () => {
         },
         address: {
           type: 'Point',
-          coordinates: [-41.57421, -31.785741],
+          coordinates: [-46.57421, -21.785741],
         },
-      },
-    ];
+      };
 
-    sandbox.stub(Partner, 'find').returns(
-      Promise.resolve(resposenClient),
-    );
+      sandbox.stub(Partner, 'findOne').returns(
+        Promise.resolve({}),
+      );
 
-    const where = {
-      id: 1,
-      lat: 30,
-      long: 20,
-      allnearest: true,
-    };
+      sandbox.stub(Partner, 'create').returns(
+        Promise.resolve(createdPartner),
+      );
 
-    const response = await PartnerClient.find(where);
-    expect(response).to.deep.equal(resposenClient);
+      const response = await PartnerClient.create(createdPartner);
+      expect(response).to.deep.equal(createdPartner);
+    });
+
+    it('should return a error when try to create partner', async() => {
+      const createdPartner = {
+        id: 1,
+        tradingName: 'Adega da Cerveja - Pinheiros',
+        ownerName: 'Zé da Silva',
+        document: '1432132123891/0001', // CNPJ
+        coverageArea: {
+          type: 'MultiPolygon',
+          coordinates: [
+            [[[30, 20], [45, 40], [10, 40], [30, 20]]],
+            [[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]],
+          ],
+        },
+        address: {
+          type: 'Point',
+          coordinates: [-46.57421, -21.785741],
+        },
+      };
+
+      sandbox.stub(Partner, 'findOne').returns(
+        Promise.resolve(createdPartner),
+      );
+      try {
+        await PartnerClient.create(createdPartner);
+      } catch (error) {
+        expect(error.message).to.be.equal('Partner exists in database');
+      }
+    });
   });
 });

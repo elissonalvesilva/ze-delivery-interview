@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const PartnerSchema = new Schema({
   id: {
     type: Number,
-    required: true,
+    unique: true,
   },
   tradingName: {
     type: String,

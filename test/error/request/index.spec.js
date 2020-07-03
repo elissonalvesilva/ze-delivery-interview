@@ -1,6 +1,6 @@
 const RequestError = require('../../../utils/error/request-error');
 
-describe('ReqeustError', () => {
+describe('RequestError', () => {
   it('when object in constructor is empty', () => {
     const requestError = new RequestError({});
 
