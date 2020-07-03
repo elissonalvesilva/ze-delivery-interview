@@ -21,7 +21,7 @@ const BusinesessPartner = {
     const formatterRequest = PartnerRequestFormatter.format(query);
     response = await ServicePartner.getPartner(formatterRequest);
 
-    if (response.error) {
+    if (response && 'error' in response) {
       httpCode = 400;
       response = {
         message: 'Error to get partner',
