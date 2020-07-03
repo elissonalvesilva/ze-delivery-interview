@@ -1,4 +1,4 @@
-const Partner = require('../models/Partner');
+const Partner = require('./Partner');
 
 const Models = {
   Partner,

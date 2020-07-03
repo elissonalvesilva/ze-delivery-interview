@@ -1,8 +1,10 @@
+const _ = require('lodash');
+
 const ServicePartner = require('../../services/partner');
+const { PartnerRequestFormatter } = require('../../formatters/partner/request');
 const {
-  PartnerRequestFormatter,
   PartnerResponseFormatter,
-} = require('../../formatters/partner');
+} = require('../../formatters/partner/response');
 
 const BusinesessPartner = {
   async handle(query) {
@@ -13,7 +15,7 @@ const BusinesessPartner = {
     response = await ServicePartner.getPartner(formatterRequest);
 
     if (response.error) {
-      httpCode = 500;
+      httpCode = 400;
       response = {
         message: 'Error to get partner',
         error: response.message,
@@ -25,7 +27,7 @@ const BusinesessPartner = {
       };
     }
 
-    if (!response) {
+    if (_.isEmpty(response)) {
       httpCode = 404;
       response = {
         message: 'Query not found',

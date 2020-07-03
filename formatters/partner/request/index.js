@@ -28,18 +28,4 @@ const PartnerRequestFormatter = {
   },
 };
 
-const PartnerResponseFormatter = {
-  format(data) {
-    const formattedResponse = {};
-
-    if (data.length > 0) {
-      formattedResponse.pdvs = data;
-    } else {
-      formattedResponse.pdv = data;
-    }
-
-    return formattedResponse;
-  },
-};
-
-module.exports = { PartnerRequestFormatter, PartnerResponseFormatter };
+module.exports = { PartnerRequestFormatter };
