@@ -119,4 +119,4 @@ npm run start
 
 ## flow diagram
 
-
+<img src="flux_diagram.png"/>
