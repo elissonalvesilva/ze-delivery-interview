@@ -103,7 +103,7 @@ docker build [OPTIONS] PATH | URL | -
 npm run start
 ```
 
-## Rotas
+## Routes
  - version
 > http://localhost:4001/version
  - health
@@ -116,6 +116,19 @@ npm run start
 > http://localhost:4001/partner?pid=[ID]&lat=[LAT]&long=[LONG]
  - Get all nearest partners
 > http://localhost:4001/partner?lat=[LAT]&long=[LONG]>&allNearest=true
+
+**This route is used when you want to get all nearest partner**
+
+#### Description route params
+| Params   |      type      | example | description  | 
+|----------|:-------------:|:--------:|------:|
+| pid  | Number  | /partner?pid=12 | Partner id  |
+| lat  | Number  | /partner?lat=-12 | Latitute |
+| long | Number  | /partner?long=12 | Longitude|
+| allNearest | Boolean | /partner?allNearest=true | get all nearest partner when you using lat and long|
+
+**Obs: when yout put lat you must to set in query string a long**
+    
 
 ## flow diagram
 
