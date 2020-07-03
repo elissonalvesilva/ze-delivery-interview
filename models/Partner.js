@@ -48,7 +48,7 @@ const PartnerSchema = new Schema({
   },
 });
 
-PartnerSchema.index({ coverageArea: ' 2dsphere' });
+PartnerSchema.index({ coverageArea: '2dsphere' });
 
 // set a Partner schema in mongoose model
 const Partner = mongoose.model('partners', PartnerSchema);
